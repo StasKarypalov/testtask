@@ -1,0 +1,32 @@
+.mainhead {
+    background: linear-gradient(to right, #343333, #484848 80%, #282828);
+    height: 127px;
+    text-align: center;
+    display: flex; /* Добавляем flex для центрирования по вертикали */
+    align-items: center; /* Выравниваем по центру по вертикали */
+}
+
+
+
+.header-wrapper {
+    width: 1088px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding-right: 180px;
+    padding-left: 180px; 
+}
+
+.image-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.favorite-text {
+    margin-left: 5px;
+    color: white;
+}
