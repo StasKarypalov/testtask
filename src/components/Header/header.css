@@ -2,19 +2,17 @@
     background: linear-gradient(to right, #343333, #484848 80%, #282828);
     height: 127px;
     text-align: center;
-    display: flex; /* Добавляем flex для центрирования по вертикали */
-    align-items: center; /* Выравниваем по центру по вертикали */
+    display: flex;
+    align-items: center;
 }
-
-
 
 .header-wrapper {
     width: 1088px;
     display: flex;
-    justify-content: space-between;
-    align-items: center; 
+    justify-content: space-between; /* Размещаем элементы по краям контейнера */
+    align-items: center;
     padding-right: 180px;
-    padding-left: 180px; 
+    padding-left: 180px;
 }
 
 .image-button {
@@ -25,8 +23,14 @@
     display: flex;
     align-items: center;
 }
+.photo-phon{
+    display: flex;
+    justify-content: space-between;
+}
+.favorite-image {
+    margin-right: 10px; /* Отступ между favorite-image и home-image */
+}
 
-.favorite-text {
-    margin-left: 5px;
-    color: white;
+.home-image {
+    margin-right: 10px; /* Отступ между home-image и favorite-image */
 }

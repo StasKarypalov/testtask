@@ -1,14 +1,20 @@
 import './App.css';
-import Header from './components/Header/Header'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
 import HomePage from './components/page/home/HomePage';
+import FavoritePage from './components/page/favorite/FavoritePage';
 
 function App() {
   return (
-    <>
-    <Header></Header>
-    
-    <HomePage></HomePage>
-  </>
+    <Router>
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/favorite" element={<FavoritePage />} />
+        </Routes>
+      </>
+    </Router>
   );
 }
 
