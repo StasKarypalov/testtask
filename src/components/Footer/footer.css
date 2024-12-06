@@ -1,0 +1,16 @@
+.mainfooter {
+    background: white;
+    height: 127px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.footer-wrapper {
+    width: 1088px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding-right: 180px;
+    padding-left: 180px;
+}
