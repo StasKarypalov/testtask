@@ -1,6 +1,8 @@
+// HomePage.jsx
 import "./home.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Paginate from './Paginate';
 
 const HomePage = () => {
     const [artworks, setArtworks] = useState([]);
@@ -25,19 +27,13 @@ const HomePage = () => {
     const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage;
     const currentArtworks = artworks.slice(indexOfFirstArtwork, indexOfLastArtwork).filter(artwork => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    const paginate = (pageNumber, event) => {
-        event.preventDefault();
+    const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
 
     const handleSearchChange = event => {
         setSearchTerm(event.target.value);
     };
-
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(currentArtworks.length / artworksPerPage); i++) {
-        pageNumbers.push(i);
-    }
 
     return (
         <>
@@ -59,13 +55,9 @@ const HomePage = () => {
                     </div>
                 ))}
             </div>
-            <div className="pagination">
-                {pageNumbers.map(number => (
-                    <button key={number} onClick={(e) => paginate(number, e)}>
-                        {number}
-                    </button>
-                ))}
-            </div>
+            <Paginate currentPage={currentPage} totalPages={Math.ceil(artworks.length / artworksPerPage)} paginate={paginate} />
+            <h4 className="tfy">Here some more</h4>
+            <h3 className="osg">Other works for you</h3>
         </>
     );
 };
