@@ -9,7 +9,7 @@
 .header-wrapper {
     width: 1088px;
     display: flex;
-    justify-content: space-between; /* Размещаем элементы по краям контейнера */
+    justify-content: space-between; 
     align-items: center;
     padding-right: 180px;
     padding-left: 180px;
@@ -28,10 +28,10 @@
     justify-content: space-between;
 }
 .favorite-image {
-    margin-right: 10px; /* Отступ между favorite-image и home-image */
+    margin-right: 10px; 
 }
 
 .home-image {
-    margin-right: 10px; /* Отступ между home-image и favorite-image */
+    margin-right: 10px; 
 }
 

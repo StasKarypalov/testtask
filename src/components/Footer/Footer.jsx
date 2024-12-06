@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './Frame 4349.png';
+import logo from './museum-logo 2 (1).svg';
 import modsen from"./logo modsen-02 2.png"
 import './footer.css';
 
