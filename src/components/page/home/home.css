@@ -54,16 +54,15 @@
 
 .second-artwork {
     margin: 10px;
-    width: calc(33.33% - 20px); /* Чтобы показывать по три в ряд */
+    width: calc(33.33% - 20px); 
     padding: 10px;
     box-sizing: border-box;
-    text-align: center; /* Чтобы картинки были по центру внутри блока */
+    text-align: center; 
 }
 
-/* Дополнительные стили для изображения */
 .second-artwork img {
     width: 150px;
-    height: 150px; /* Фиксированная высота для изображения */
+    height: 150px; 
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -123,21 +122,21 @@
 }
 .pagination{
     display: flex;
-    justify-content: flex-end; /* Выравнивание кнопок пагинации вправо */
+    justify-content: flex-end; 
     margin-top: 30px;
     margin-right: 120px;
 }
 .pagination button {
     margin: 0 5px;
     padding: 5px 10px;
-    background-color: #fff; /* Цвет фона не выбранной кнопки */
-    color: black; /* Цвет текста не выбранной кнопки */ 
+    background-color: #fff; 
+    color: black; 
     border:none;
     cursor: pointer;
 }
 
 .pagination button.active {
-    background-color: #f17900; /* Цвет фона выбранной кнопки */
-    color: #fff; /* Цвет текста выбранной кнопки */
-    border: 1px solid #fff; /* Граница выбранной кнопки */
+    background-color: #f17900; 
+    color: #fff; 
+    border: 1px solid #fff;
 }
