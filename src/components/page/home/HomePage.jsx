@@ -4,14 +4,14 @@ import Paginate from './Paginate';
 import Loader from './Loader';
 import "./home.css";
 
-const HomePage = () => {
+const HomePage = ({addToFavorite}) => {
     const [artworks, setArtworks] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const artworksPerPage = 3;
 
-    useEffect(() => {
+        useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://api.artic.edu/api/v1/artworks');
@@ -29,6 +29,10 @@ const HomePage = () => {
     const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage;
     const currentArtworks = artworks.slice(indexOfFirstArtwork, indexOfLastArtwork).filter(artwork => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
+    const handleAddToFavorite = (artwork) =>{
+        addToFavorite(artwork)
+    }
+
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -36,6 +40,7 @@ const HomePage = () => {
     const handleSearchChange = event => {
         setSearchTerm(event.target.value);
     };
+
 
     return (
         <>
@@ -55,6 +60,7 @@ const HomePage = () => {
                             <div key={artwork.id} className="artwork">
                                 <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
                                 <h3>{artwork.title}</h3>
+                                <button onClick={handleAddToFavorite}>Add to Fav</button>
                                 <p>{artwork.artist_title}</p>
                             </div>
                         ))}
@@ -67,6 +73,7 @@ const HomePage = () => {
                             <div key={artwork.id} className="second-artwork">
                                 <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
                                 <h3>{artwork.title}</h3>
+                                <button >Add to Fav</button>
                                 <p>{artwork.artist_title}</p>
                             </div>
                         ))}

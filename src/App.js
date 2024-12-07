@@ -4,15 +4,21 @@ import Header from './components/Header/Header';
 import HomePage from './components/page/home/HomePage';
 import FavoritePage from './components/page/favorite/FavoritePage';
 import Footer from './components/Footer/Footer';
+import { useState } from 'react';
 
 function App() {
+
+  const [favorites, setFavorite] = useState([]);
+  const addToFavorite = (artwork) => {
+    setFavorite([...favorites, artwork]);
+  };
   return (
     <Router>
       <>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/favorite" element={<FavoritePage />} />
+          <Route path="/" element={<HomePage addToFavorite={addToFavorite}/>} />
+          <Route path="/favorite" element={<FavoritePage  favorites={favorites}/>} />
         </Routes>
         <Footer />
       </>

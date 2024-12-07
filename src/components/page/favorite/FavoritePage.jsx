@@ -1,3 +1,5 @@
+// FavoritePage.jsx
+
 import React from 'react';
 
 const FavoritePage = ({ favorites }) => {
