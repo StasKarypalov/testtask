@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Paginate from './Paginate';
 import Loader from './Loader';
-import "./home.css"
+import "./home.css";
 
 const HomePage = () => {
     const [artworks, setArtworks] = useState([]);
@@ -62,6 +62,15 @@ const HomePage = () => {
                     <Paginate currentPage={currentPage} totalPages={Math.ceil(artworks.length / artworksPerPage)} paginate={paginate} />
                     <h4 className="tfy">Here some more</h4>
                     <h3 className="osg">Other works for you</h3>
+                    <div className="second-artworks-container">
+                        {artworks.slice(indexOfLastArtwork, indexOfLastArtwork + 9).map((artwork) => (
+                            <div key={artwork.id} className="second-artwork">
+                                <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
+                                <h3>{artwork.title}</h3>
+                                <p>{artwork.artist_title}</p>
+                            </div>
+                        ))}
+                    </div>
                 </>
             )}
         </>

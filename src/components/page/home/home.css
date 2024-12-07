@@ -45,6 +45,30 @@
     margin-top: 20px;
 }
 
+.second-artworks-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.second-artwork {
+    margin: 10px;
+    width: calc(33.33% - 20px); /* Чтобы показывать по три в ряд */
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center; /* Чтобы картинки были по центру внутри блока */
+}
+
+/* Дополнительные стили для изображения */
+.second-artwork img {
+    width: 150px;
+    height: 150px; /* Фиксированная высота для изображения */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 .artwork {
     margin: 10px;
     width: calc(30% - 20px);
