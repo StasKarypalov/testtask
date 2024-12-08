@@ -1,5 +1,6 @@
 
 .findtext {
+    padding: 50px;
     text-align: center;
     font-family: 'Lexend Deca', sans-serif;
     font-size: 40px;
@@ -139,4 +140,22 @@
     background-color: #f17900; 
     color: #fff; 
     border: 1px solid #fff;
+}
+
+.favorite-icon {
+    width: 20px; /* Укажите нужную ширину значка */
+    height: 20px; /* Укажите нужную высоту значка */
+    cursor: pointer; /* Установите курсор в виде указателя при наведении */
+    margin-top: 5px; /* Отступ сверху */
+}
+
+.favorite-icon:hover {
+    opacity: 0.7; /* При наведении уменьшите немного прозрачность */
+}
+.favorite-artwork img {
+    width: 100px; 
+    height: auto; 
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }

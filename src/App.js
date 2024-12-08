@@ -10,7 +10,8 @@ function App() {
 
   const [favorites, setFavorite] = useState([]);
   const addToFavorite = (artwork) => {
-    setFavorite([...favorites, artwork]);
+    setFavorite( (prev) => [...prev, artwork]);
+    console.log(favorites)
   };
   return (
     <Router>
@@ -18,7 +19,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage addToFavorite={addToFavorite}/>} />
-          <Route path="/favorite" element={<FavoritePage  favorites={favorites}/>} />
+          <Route path="/favorites" element={<FavoritePage  favorites={favorites}/>} />
         </Routes>
         <Footer />
       </>

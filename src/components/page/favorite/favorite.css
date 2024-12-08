@@ -1,0 +1,38 @@
+.hay {
+    padding: 50px;
+    text-align: center;
+    color: #393939;
+}
+
+.list {
+    text-align: center;
+    padding: 50px;
+}
+
+.favorites-image {
+    width: 20px; /* Adjust the width as needed */
+}
+
+.favorites-container {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.favorite-artwork {
+    margin: 10px;
+    width: calc(33.33% - 20px); /* Одна треть ширины с учетом отступов */
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center; 
+}
+
+.favorite-artwork img {
+    width: 80px; /* Ширина изображения */
+    height: auto; /* Автоматическая высота */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

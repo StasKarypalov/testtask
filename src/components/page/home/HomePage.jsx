@@ -3,6 +3,7 @@ import axios from 'axios';
 import Paginate from './Paginate';
 import Loader from './Loader';
 import "./home.css";
+import favIcon from "./Vector.png"
 
 const HomePage = ({addToFavorite}) => {
     const [artworks, setArtworks] = useState([]);
@@ -29,9 +30,10 @@ const HomePage = ({addToFavorite}) => {
     const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage;
     const currentArtworks = artworks.slice(indexOfFirstArtwork, indexOfLastArtwork).filter(artwork => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    const handleAddToFavorite = (artwork) =>{
+    const handleAddToFavorite = (artwork) => () => {
         addToFavorite(artwork)
     }
+
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -52,28 +54,28 @@ const HomePage = ({addToFavorite}) => {
                 </div>
             </section>
             <h4 className="tfy">Topics for you</h4>
-            <h3 className="osg">Our special gallery</h3>
+            <h2 className="osg">Our special gallery</h2>
             {loading ? <Loader /> : (
                 <>
                     <div className="artworks-container">
-                        {currentArtworks.map((artwork) => (
+                    {currentArtworks.map((artwork) => (
                             <div key={artwork.id} className="artwork">
                                 <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
                                 <h3>{artwork.title}</h3>
-                                <button onClick={handleAddToFavorite}>Add to Fav</button>
+                                <button onClick={handleAddToFavorite(artwork)}>Add to Fav</button>
                                 <p>{artwork.artist_title}</p>
                             </div>
                         ))}
                     </div>
                     <Paginate currentPage={currentPage} totalPages={Math.ceil(artworks.length / artworksPerPage)} paginate={paginate} />
                     <h4 className="tfy">Here some more</h4>
-                    <h3 className="osg">Other works for you</h3>
+                    <h2 className="osg">Other works for you</h2>
                     <div className="second-artworks-container">
                         {artworks.slice(indexOfLastArtwork, indexOfLastArtwork + 9).map((artwork) => (
                             <div key={artwork.id} className="second-artwork">
                                 <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
                                 <h3>{artwork.title}</h3>
-                                <button >Add to Fav</button>
+                                <img src={favIcon} alt="Favorite" className="favorite-icon" onClick={handleAddToFavorite(artwork)} />
                                 <p>{artwork.artist_title}</p>
                             </div>
                         ))}
