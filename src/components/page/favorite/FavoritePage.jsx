@@ -8,7 +8,7 @@ const FavoritePage = () => {
     const handleRemoveFavorite = (id) => {
         const updatedFavorites = favorites.filter(favorite => favorite.id !== id);
         sessionStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-        window.location.reload(); // Перезагрузка страницы для обновления списка
+        window.location.reload(); 
     };
 
     return (
@@ -16,8 +16,8 @@ const FavoritePage = () => {
             <h1 className='hay'>Here Are Your <br/><img src={favIcon} alt="Favorites" className="favorites-image" /> <span className="orange-text">Favorites</span></h1>
 
             <div className='list'>
-                <h4>Saved by you</h4>
-                <h2>Your favorites list</h2>
+                <h4 className='sby'>Saved by you</h4>
+                <h2 className='yfl'>Your favorites list</h2>
             </div>
 
             <div className="favorites-container">

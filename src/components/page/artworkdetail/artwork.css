@@ -18,6 +18,7 @@
 .artwork-title {
     font-size: 24px;
     margin-bottom: 10px; 
+    color: #393939; 
 }
 
 .all-without-title {
@@ -26,11 +27,12 @@
 }
 
 .artist-title {
-    color: orange; 
+    color: #E0A449; 
     margin-bottom: 5px;
 }
 
 .artist-lifetime {
+    color: #393939; 
     margin-bottom: 20px;
 }
 
@@ -39,6 +41,15 @@
     flex-direction: column;
     gap: 5px; 
 }
+
+.detail-label {
+    color: #E0A449; 
+}
+
+.detail-value {
+    color: #393939; 
+}
+
 @media only screen and (max-width: 360px) {
     .artwork-detail-page {
         flex-direction: column; 

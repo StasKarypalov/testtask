@@ -15,10 +15,22 @@ const ArtworkDetailPage = ({ artwork }) => {
                     <p className="artist-title">{artwork.artist_title}</p>
                     <p className="artist-lifetime">{artwork.lifetime}</p>
                     <div className="artwork-details">
-                        <p>Artist Nationality: {artwork.artist_nationality}</p>
-                        <p>Dimensions: {artwork.dimensions}</p>
-                        <p>Credit Line: {artwork.credit_line}</p>
-                        <p>Repository: {artwork.repository}</p>
+                        <p>
+                            <span className="detail-label">Artist Nationality:</span>
+                            <span className="detail-value">{artwork.artist_nationality}</span>
+                        </p>
+                        <p>
+                            <span className="detail-label">Dimensions:</span>
+                            <span className="detail-value">{artwork.dimensions}</span>
+                        </p>
+                        <p>
+                            <span className="detail-label">Credit Line:</span>
+                            <span className="detail-value">{artwork.credit_line}</span>
+                        </p>
+                        <p>
+                            <span className="detail-label">Repository:</span>
+                            <span className="detail-value">{artwork.repository}</span>
+                        </p>
                     </div>
                 </div>
             </div>

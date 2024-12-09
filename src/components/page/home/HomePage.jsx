@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Paginate from './Paginate';
 import Loader from './Loader';
+import useDebounce from './useDebounce'; 
 import "./home.css";
 import favIcon from "./Vector.png";
 import SortMenu from './SortMenu';
@@ -14,6 +15,9 @@ const HomePage = ({ addToFavorite, addToDetails }) => {
     const [loading, setLoading] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
     const artworksPerPage = 3;
+
+   
+    const debouncedSearchTerm = useDebounce(searchTerm, 300); 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,18 +65,16 @@ const HomePage = ({ addToFavorite, addToDetails }) => {
             sortedArtworks.sort((a, b) => new Date(a.date) - new Date(b.date));
         }
         setArtworks(sortedArtworks);
-        setMenuOpen(false); // Закрыть меню после сортировки
+        setMenuOpen(false); 
     };
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
 
-    const handleSearchChange = event => {
-        setSearchTerm(event.target.value);
-    };
-
-    const filteredArtworks = artworks.filter(artwork => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredArtworks = artworks.filter(artwork => 
+        artwork.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+    );
 
     const indexOfLastArtwork = currentPage * artworksPerPage;
     const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage;
@@ -83,7 +85,11 @@ const HomePage = ({ addToFavorite, addToDetails }) => {
             <section className="findart">
                 <h1 className="findtext">Let's Find Some <span className="orange-text">Art</span> <br /> Here!</h1>
                 <div className="search-container">
-                    <input className='findline' type="text" placeholder="Enter your text here" value={searchTerm} onChange={handleSearchChange} />
+                    <input className='findline' 
+                           type="text" 
+                           placeholder="Enter your text here" 
+                           value={searchTerm} 
+                           onChange={e => setSearchTerm(e.target.value)} />
                     <div className="search-icon"></div>
                     <div className="burger-menu">
                         <SortMenu handleSort={handleToggleMenu} menuOpen={menuOpen} sortBy={sortBy} />
