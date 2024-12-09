@@ -21,11 +21,12 @@
 .findline {
     position: relative;
     margin-top: 10px; 
-    height: 50px;
-    width: 762px;
+    height: 50px; 
+    width: 762px; 
     border-radius: 15px;
     background-color: #3939390b;
     border: none;
+    padding-right: 50px; 
 }
 
 .search-icon {
@@ -34,10 +35,31 @@
     background-image: url('C:\Users\stask\OneDrive\Рабочий стол\React App\Новая папка\testtask\src\components\page\home\search.png');
     background-size: cover;
     background-position: center;
-    position: absolute;
+    position: absolute; 
     top: 50%; 
-    right: 390px; 
-    transform: translateY(-40%);
+    right: 350px; 
+    transform: translateY(-40%); 
+}
+@media only screen and (max-width: 768px) {
+    .findline {
+        width: 100%; 
+        padding-right: 40px; 
+    }
+
+    .search-icon {
+        right: 15px; 
+        width: 28px; 
+        height: 28px;
+        transform: translateY(-50%);
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .search-icon {
+        right: 10px; 
+        width: 24px; 
+        height: 24px; 
+    }
 }
 
 .artworks-container {
@@ -225,14 +247,14 @@
 }
 
 .favorite-icon {
-    width: 20px; /* Укажите нужную ширину значка */
-    height: 20px; /* Укажите нужную высоту значка */
-    cursor: pointer; /* Установите курсор в виде указателя при наведении */
-    margin-top: 5px; /* Отступ сверху */
+    width: 20px; 
+    height: 20px; 
+    cursor: pointer; 
+    margin-top: 5px; 
 }
 
 .favorite-icon:hover {
-    opacity: 0.7; /* При наведении уменьшите немного прозрачность */
+    opacity: 0.7; 
 }
 .favorite-artwork img {
     width: 100px; 

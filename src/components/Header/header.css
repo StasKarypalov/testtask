@@ -37,11 +37,11 @@
 
 @media only screen and (max-width: 360px) {
     .header-wrapper {
-        flex-direction: column; /* Вертикальное расположение элементов */
-        padding: 10px; /* Уменьшение отступов */
+        flex-direction: column; 
+        padding: 10px; 
     }
 
     .image-button {
-        padding: 5px; /* Уменьшение отступов */
+        padding: 5px; 
     }
 }

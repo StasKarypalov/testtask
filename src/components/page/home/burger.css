@@ -28,11 +28,11 @@
 }
 @media only screen and (max-width: 360px) {
     .burger-menu {
-        right: 10px; /* Уменьшение расстояния от края */
-        top: 15px; /* Уменьшение расстояния от верхнего края */
+        right: 10px; 
+        top: 15px; 
     }
 
     .bar {
-        width: 20px; /* Уменьшение ширины полос */
+        width: 20px; 
     }
 }

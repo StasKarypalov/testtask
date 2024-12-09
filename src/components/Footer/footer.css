@@ -17,11 +17,11 @@
 }
 @media only screen and (max-width: 360px) {
     .footer-wrapper {
-        flex-direction: column; /* Вертикальное расположение элементов */
-        padding: 10px; /* Уменьшение отступов */
+        flex-direction: column; 
+        padding: 10px; 
     }
 
     .mainfooter {
-        height: auto; /* Автоматическая высота */
+        height: auto; 
     }
 }

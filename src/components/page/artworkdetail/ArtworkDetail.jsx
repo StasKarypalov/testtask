@@ -1,5 +1,5 @@
 import React from 'react';
-import './artwork.css'; // Импортируем файл стилей
+import './artwork.css';
 
 const ArtworkDetailPage = ({ artwork }) => {
     return (

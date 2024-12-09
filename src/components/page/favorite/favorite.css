@@ -39,11 +39,11 @@
 
 @media only screen and (max-width: 360px) {
     .favorites-container {
-        flex-direction: column; /* Вертикальное расположение элементов */
-        padding: 20px; /* Уменьшение отступов */
+        flex-direction: column; 
+        padding: 20px;
     }
 
     .favorite-artwork {
-        width: 100%; /* Полная ширина для картин */
+        width: 100%; 
     }
 }
