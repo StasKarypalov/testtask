@@ -26,3 +26,13 @@
 .change .bar:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+@media only screen and (max-width: 360px) {
+    .burger-menu {
+        right: 10px; /* Уменьшение расстояния от края */
+        top: 15px; /* Уменьшение расстояния от верхнего края */
+    }
+
+    .bar {
+        width: 20px; /* Уменьшение ширины полос */
+    }
+}

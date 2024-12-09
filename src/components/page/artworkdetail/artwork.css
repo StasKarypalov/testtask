@@ -1,0 +1,56 @@
+.artwork-detail-page {
+    display: flex;
+    align-items: flex-start;
+    padding: 100px;
+}
+
+.artwork-image {
+    width: 300px; /* Уменьшаем размер изображения */
+    height: auto;
+    margin-right: 20px; /* Отступ между изображением и текстом */
+}
+
+.artwork-info {
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение информации */
+}
+
+.artwork-title {
+    font-size: 24px;
+    margin-bottom: 10px; /* Отступ под заголовком */
+}
+
+.all-without-title {
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение текста под заголовком */
+}
+
+.artist-title {
+    color: orange; /* Оранжевый цвет для имени автора */
+    margin-bottom: 5px;
+}
+
+.artist-lifetime {
+    margin-bottom: 20px;
+}
+
+.artwork-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Отступы между строками */
+}
+@media only screen and (max-width: 360px) {
+    .artwork-detail-page {
+        flex-direction: column; /* Вертикальное расположение элементов */
+        padding: 20px; /* Уменьшение отступов */
+    }
+
+    .artwork-image {
+        width: 100%; /* Полная ширина изображения */
+        margin-right: 0; /* Удаление отступа */
+    }
+
+    .artwork-info {
+        text-align: center; /* Центрирование текста */
+    }
+}

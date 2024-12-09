@@ -5,8 +5,9 @@ import Loader from './Loader';
 import "./home.css";
 import favIcon from "./Vector.png";
 import SortMenu from './SortMenu';
+import { useNavigate } from 'react-router-dom';
 
-const HomePage = ({ addToFavorite }) => {
+const HomePage = ({ addToFavorite, addToDetails }) => {
     const [artworks, setArtworks] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
@@ -28,13 +29,39 @@ const HomePage = ({ addToFavorite }) => {
         fetchData();
     }, []);
 
-    
+    const navigate = useNavigate();
+
+    const handleAddToDetails = (artwork) => {
+        addToDetails(artwork);
+        navigate(`/artwork/${artwork.id}`);
+    }
 
     const handleToggleMenu = () => {
-        console.log(setMenuOpen(!menuOpen));
+        setMenuOpen(!menuOpen);
     };
+
     const handleAddToFavorite = (artwork) => () => {
-        addToFavorite(artwork);
+        const favorites = JSON.parse(sessionStorage.getItem('favorites')) || [];
+        const isFavorite = favorites.some(fav => fav.id === artwork.id);
+
+        if (!isFavorite) {
+            addToFavorite(artwork);
+        } else {
+            alert('This artwork is already in your favorites.');
+        }
+    };
+
+    const sortBy = (criteria) => {
+        const sortedArtworks = [...artworks];
+        if (criteria === 'title') {
+            sortedArtworks.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (criteria === 'artist_title') {
+            sortedArtworks.sort((a, b) => a.artist_title.localeCompare(b.artist_title));
+        } else if (criteria === 'date') {
+            sortedArtworks.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+        setArtworks(sortedArtworks);
+        setMenuOpen(false); // Закрыть меню после сортировки
     };
 
     const paginate = (pageNumber) => {
@@ -59,7 +86,7 @@ const HomePage = ({ addToFavorite }) => {
                     <input className='findline' type="text" placeholder="Enter your text here" value={searchTerm} onChange={handleSearchChange} />
                     <div className="search-icon"></div>
                     <div className="burger-menu">
-                        <SortMenu handleSort={handleToggleMenu} menuOpen={menuOpen}/>
+                        <SortMenu handleSort={handleToggleMenu} menuOpen={menuOpen} sortBy={sortBy} />
                     </div>
                 </div>
             </section>
@@ -70,17 +97,21 @@ const HomePage = ({ addToFavorite }) => {
                     <div className="artworks-container">
                         {currentArtworks.map((artwork) => (
                             <div key={artwork.id} className="artwork">
-                                <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
+                                <img
+                                    src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'}
+                                    alt={artwork.title}
+                                    onClick={() => handleAddToDetails(artwork)}
+                                />
                                 <div className="artwork-content">
                                     <div className="text-content">
                                         <h3>{artwork.title}</h3>
                                         <p>{artwork.artist_title}</p>
                                     </div>
                                     <div className="favorite-icon" onClick={handleAddToFavorite(artwork)}>
-                              <img src={favIcon} alt="Favorite" />
-                          </div>
-                          </div>
-                        </div>
+                                        <img src={favIcon} alt="Favorite" />
+                                    </div>
+                                </div>
+                            </div>
                         ))}
                     </div>
                     <Paginate currentPage={currentPage} totalPages={Math.ceil(filteredArtworks.length / artworksPerPage)} paginate={paginate} />
@@ -88,16 +119,16 @@ const HomePage = ({ addToFavorite }) => {
                     <h2 className="osg">Other works for you</h2>
                     <div className="second-artworks-container">
                         {filteredArtworks.slice(indexOfLastArtwork, indexOfLastArtwork + 9).map((artwork) => (
-                          <div key={artwork.id} className="second-artwork">
-                          <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
-                          <div className="second-artwork-content">
-                              <h3>{artwork.title}</h3>
-                              <p>{artwork.artist_title}</p>
-                          </div>
-                          <div className="favorite-icon" onClick={handleAddToFavorite(artwork)}>
-                              <img src={favIcon} alt="Favorite" />
-                          </div>
-                      </div>
+                            <div key={artwork.id} className="second-artwork">
+                                <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
+                                <div className="second-artwork-content">
+                                    <h3>{artwork.title}</h3>
+                                    <p>{artwork.artist_title}</p>
+                                </div>
+                                <div className="favorite-icon" onClick={handleAddToFavorite(artwork)}>
+                                    <img src={favIcon} alt="Favorite" />
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </>

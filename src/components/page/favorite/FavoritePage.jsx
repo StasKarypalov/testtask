@@ -5,6 +5,12 @@ import favIcon from "./Vector copy.png";
 const FavoritePage = () => {
     const favorites = JSON.parse(sessionStorage.getItem('favorites')) || [];
 
+    const handleRemoveFavorite = (id) => {
+        const updatedFavorites = favorites.filter(favorite => favorite.id !== id);
+        sessionStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+        window.location.reload(); // Перезагрузка страницы для обновления списка
+    };
+
     return (
         <>
             <h1 className='hay'>Here Are Your <br/><img src={favIcon} alt="Favorites" className="favorites-image" /> <span className="orange-text">Favorites</span></h1>
@@ -22,8 +28,8 @@ const FavoritePage = () => {
                             <h3>{favorite.title}</h3>
                             <p>{favorite.artist_title}</p>
                         </div>
-                        <div className="favorite-icon">
-                            <img src={favIcon} alt="Favorite" />
+                        <div className="favorite-icon" onClick={() => handleRemoveFavorite(favorite.id)}>
+                            <img src={favIcon} alt="Remove from Favorites" />
                         </div>
                     </div>
                 ))}
