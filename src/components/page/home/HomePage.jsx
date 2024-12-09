@@ -3,16 +3,16 @@ import axios from 'axios';
 import Paginate from './Paginate';
 import Loader from './Loader';
 import "./home.css";
-import favIcon from "./Vector.png"
+import favIcon from "./Vector.png";
 
-const HomePage = ({addToFavorite}) => {
+const HomePage = ({ addToFavorite }) => {
     const [artworks, setArtworks] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const artworksPerPage = 3;
 
-        useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://api.artic.edu/api/v1/artworks');
@@ -26,14 +26,9 @@ const HomePage = ({addToFavorite}) => {
         fetchData();
     }, []);
 
-    const indexOfLastArtwork = currentPage * artworksPerPage;
-    const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage;
-    const currentArtworks = artworks.slice(indexOfFirstArtwork, indexOfLastArtwork).filter(artwork => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()));
-
     const handleAddToFavorite = (artwork) => () => {
-        addToFavorite(artwork)
-    }
-
+        addToFavorite(artwork);
+    };
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -43,6 +38,12 @@ const HomePage = ({addToFavorite}) => {
         setSearchTerm(event.target.value);
     };
 
+    // Фильтрация всех работ на основе поискового термина
+    const filteredArtworks = artworks.filter(artwork => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    const indexOfLastArtwork = currentPage * artworksPerPage;
+    const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage;
+    const currentArtworks = filteredArtworks.slice(indexOfFirstArtwork, indexOfLastArtwork);
 
     return (
         <>
@@ -58,26 +59,30 @@ const HomePage = ({addToFavorite}) => {
             {loading ? <Loader /> : (
                 <>
                     <div className="artworks-container">
-                    {currentArtworks.map((artwork) => (
+                        {currentArtworks.map((artwork) => (
                             <div key={artwork.id} className="artwork">
                                 <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
                                 <h3>{artwork.title}</h3>
-                                <button onClick={handleAddToFavorite(artwork)}>Add to Fav</button>
                                 <p>{artwork.artist_title}</p>
+                                <img src={favIcon} alt="Favorite2" className="favorite-icon2" onClick={handleAddToFavorite(artwork)} />
                             </div>
                         ))}
                     </div>
-                    <Paginate currentPage={currentPage} totalPages={Math.ceil(artworks.length / artworksPerPage)} paginate={paginate} />
+                    <Paginate currentPage={currentPage} totalPages={Math.ceil(filteredArtworks.length / artworksPerPage)} paginate={paginate} />
                     <h4 className="tfy">Here some more</h4>
                     <h2 className="osg">Other works for you</h2>
                     <div className="second-artworks-container">
-                        {artworks.slice(indexOfLastArtwork, indexOfLastArtwork + 9).map((artwork) => (
-                            <div key={artwork.id} className="second-artwork">
-                                <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
-                                <h3>{artwork.title}</h3>
-                                <img src={favIcon} alt="Favorite" className="favorite-icon" onClick={handleAddToFavorite(artwork)} />
-                                <p>{artwork.artist_title}</p>
-                            </div>
+                        {filteredArtworks.slice(indexOfLastArtwork, indexOfLastArtwork + 9).map((artwork) => (
+                          <div key={artwork.id} className="second-artwork">
+                          <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
+                          <div className="second-artwork-content">
+                              <h3>{artwork.title}</h3>
+                              <p>{artwork.artist_title}</p>
+                          </div>
+                          <div className="favorite-icon" onClick={handleAddToFavorite(artwork)}>
+                              <img src={favIcon} alt="Favorite" />
+                          </div>
+                      </div>
                         ))}
                     </div>
                 </>
