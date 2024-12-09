@@ -7,23 +7,25 @@ import Footer from './components/Footer/Footer';
 import { useState } from 'react';
 
 function App() {
+  const [favorites, setFavorites] = useState(JSON.parse(sessionStorage.getItem('favorites')) || []);
 
-  const [favorites, setFavorite] = useState([]);
   const addToFavorite = (artwork) => {
-    setFavorite( (prev) => [...prev, artwork]);
-    console.log(favorites)
+      const updatedFavorites = [...favorites, artwork];
+      setFavorites(updatedFavorites);
+      sessionStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
+
   return (
-    <Router>
-      <>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage addToFavorite={addToFavorite}/>} />
-          <Route path="/favorites" element={<FavoritePage  favorites={favorites}/>} />
-        </Routes>
-        <Footer />
-      </>
-    </Router>
+      <Router>
+          <>
+              <Header />
+              <Routes>
+                  <Route path="/" element={<HomePage addToFavorite={addToFavorite} />} />
+                  <Route path="/favorites" element={<FavoritePage favorites={favorites} />} />
+              </Routes>
+              <Footer />
+          </>
+      </Router>
   );
 }
 
