@@ -36,8 +36,8 @@
     background-position: center;
     position: absolute;
     top: 50%; 
-    right: 370px; 
-    transform: translateY(-50%);
+    right: 390px; 
+    transform: translateY(-40%);
 }
 
 .artworks-container {
@@ -125,6 +125,28 @@
     width: calc(30% - 20px);
     padding: 10px;
     box-sizing: border-box;
+    position: relative;
+}
+
+.artwork-content {
+    margin: auto;
+    width: 402px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255);
+   
+}
+
+.text-content {
+    margin-bottom: 10px;
+}
+
+.favorite-icon2 {
+    position: absolute;
+    top: 40px;
+    right: 0px;
+    cursor: pointer;
 }
 
 .artworks-container h4 {

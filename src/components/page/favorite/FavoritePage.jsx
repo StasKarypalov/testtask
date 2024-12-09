@@ -1,7 +1,9 @@
 import React from 'react';
 import "./favorite.css"
 import fav from "./Vector.png"
+import favIcon from "./Vector copy.png"
 const FavoritePage = ({ favorites }) => {
+
     return (
         <>
             <h1 className='hay'>Here Are Your <br/><img src={fav} alt="Favorites" className="favorites-image" /> <span className="orange-text">Favorites</span></h1>
@@ -13,11 +15,16 @@ const FavoritePage = ({ favorites }) => {
 
             <div className="favorites-container">
                 {favorites.map((favorite) => (
-                    <div key={favorite.id} className="favorite-artwork">
-                        <img src={favorite.image_id ? `https://www.artic.edu/iiif/2/${favorite.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={favorite.title} />
+                    <div key={favorite.id} className="second-artwork">
+                    <img src={favorite.image_id ? `https://www.artic.edu/iiif/2/${favorite.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={favorite.title} />
+                    <div className="second-artwork-content">
                         <h3>{favorite.title}</h3>
                         <p>{favorite.artist_title}</p>
                     </div>
+                    <div className="favorite-icon" >
+                        <img src={favIcon} alt="Favorite" />
+                    </div>
+                </div>
                 ))}
             </div>
         </>

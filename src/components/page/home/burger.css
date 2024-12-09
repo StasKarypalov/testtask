@@ -1,0 +1,28 @@
+.burger-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+.burger-menu {
+    position: absolute;
+    top: 25px;
+    right: 180px;
+}
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.change .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.change .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.change .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}

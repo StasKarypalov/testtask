@@ -4,12 +4,14 @@ import Paginate from './Paginate';
 import Loader from './Loader';
 import "./home.css";
 import favIcon from "./Vector.png";
+import SortMenu from './SortMenu';
 
 const HomePage = ({ addToFavorite }) => {
     const [artworks, setArtworks] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
+    const [menuOpen, setMenuOpen] = useState(false);
     const artworksPerPage = 3;
 
     useEffect(() => {
@@ -26,6 +28,11 @@ const HomePage = ({ addToFavorite }) => {
         fetchData();
     }, []);
 
+    
+
+    const handleToggleMenu = () => {
+        console.log(setMenuOpen(!menuOpen));
+    };
     const handleAddToFavorite = (artwork) => () => {
         addToFavorite(artwork);
     };
@@ -38,7 +45,6 @@ const HomePage = ({ addToFavorite }) => {
         setSearchTerm(event.target.value);
     };
 
-    // Фильтрация всех работ на основе поискового термина
     const filteredArtworks = artworks.filter(artwork => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
     const indexOfLastArtwork = currentPage * artworksPerPage;
@@ -52,6 +58,9 @@ const HomePage = ({ addToFavorite }) => {
                 <div className="search-container">
                     <input className='findline' type="text" placeholder="Enter your text here" value={searchTerm} onChange={handleSearchChange} />
                     <div className="search-icon"></div>
+                    <div className="burger-menu">
+                        <SortMenu handleSort={handleToggleMenu} menuOpen={menuOpen}/>
+                    </div>
                 </div>
             </section>
             <h4 className="tfy">Topics for you</h4>
@@ -62,10 +71,16 @@ const HomePage = ({ addToFavorite }) => {
                         {currentArtworks.map((artwork) => (
                             <div key={artwork.id} className="artwork">
                                 <img src={artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : 'placeholder.jpg'} alt={artwork.title} />
-                                <h3>{artwork.title}</h3>
-                                <p>{artwork.artist_title}</p>
-                                <img src={favIcon} alt="Favorite2" className="favorite-icon2" onClick={handleAddToFavorite(artwork)} />
-                            </div>
+                                <div className="artwork-content">
+                                    <div className="text-content">
+                                        <h3>{artwork.title}</h3>
+                                        <p>{artwork.artist_title}</p>
+                                    </div>
+                                    <div className="favorite-icon" onClick={handleAddToFavorite(artwork)}>
+                              <img src={favIcon} alt="Favorite" />
+                          </div>
+                          </div>
+                        </div>
                         ))}
                     </div>
                     <Paginate currentPage={currentPage} totalPages={Math.ceil(filteredArtworks.length / artworksPerPage)} paginate={paginate} />
